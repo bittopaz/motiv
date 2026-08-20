@@ -1,0 +1,24 @@
+# Dependabot configuration.
+#
+# This repository is configured to receive SECURITY updates only.
+# Setting `open-pull-requests-limit: 0` disables routine version-update pull
+# requests for each ecosystem. Security updates are not subject to this limit,
+# so Dependabot will still open pull requests to fix vulnerable dependencies.
+#
+# Note: security update pull requests also require "Dependabot security
+# updates" to be enabled in the repository's security settings.
+# See: https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/secure-your-dependencies/configure-security-updates
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: weekly
+  # Security updates only: no version-update pull requests.
+  open-pull-requests-limit: 0
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+  # Security updates only: no version-update pull requests.
+  open-pull-requests-limit: 0

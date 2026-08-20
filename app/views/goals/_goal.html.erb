@@ -1,0 +1,19 @@
+<div id="<%= dom_id goal %>" class="goal-card <%= "is-done" if goal.completed? %>">
+  <%= button_to toggle_goal_path(goal), method: :patch, class: "goal-check", aria: { label: "Toggle completed" } do %>
+    <span class="checkbox"><%= "&#10003;".html_safe if goal.completed? %></span>
+  <% end %>
+
+  <div class="goal-body">
+    <p class="goal-title"><%= goal.title %></p>
+    <% if goal.motivation.present? %>
+      <p class="goal-motivation">&ldquo;<%= goal.motivation %>&rdquo;</p>
+    <% end %>
+  </div>
+
+  <div class="goal-actions">
+    <span class="badge <%= goal.completed? ? "badge-done" : "badge-active" %>">
+      <%= goal.completed? ? "Completed" : "Active" %>
+    </span>
+    <%= link_to "Edit", edit_goal_path(goal), class: "btn btn-ghost" %>
+  </div>
+</div>

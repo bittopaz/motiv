@@ -1,0 +1,26 @@
+<% content_for :title, "Goals" %>
+
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<div class="toolbar">
+  <div class="stats">
+    <span class="pill"><strong><%= @goals.size %></strong> total</span>
+    <span class="pill"><strong><%= @goals.count(&:completed?) %></strong> completed</span>
+    <span class="pill"><strong><%= @goals.reject(&:completed?).size %></strong> active</span>
+  </div>
+  <%= link_to "+ New goal", new_goal_path, class: "btn btn-primary" %>
+</div>
+
+<% if @goals.any? %>
+  <div id="goals" class="card-list">
+    <%= render @goals %>
+  </div>
+<% else %>
+  <div class="empty">
+    <h2>No goals yet</h2>
+    <p>Every big achievement starts with a single goal. Add your first one!</p>
+    <%= link_to "Create your first goal", new_goal_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

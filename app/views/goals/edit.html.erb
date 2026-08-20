@@ -1,0 +1,9 @@
+<% content_for :title, "Editing goal" %>
+
+<h1>Editing goal</h1>
+
+<%= render "form", goal: @goal %>
+
+<p style="margin-top:16px">
+  <%= link_to "Back to goals", goals_path, class: "back-link" %>
+</p>

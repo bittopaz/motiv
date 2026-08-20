@@ -1,0 +1,15 @@
+<% content_for :title, "Goal" %>
+
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<div class="card-list">
+  <%= render @goal %>
+</div>
+
+<p style="margin-top:16px; display:flex; gap:12px; align-items:center">
+  <%= link_to "Edit this goal", edit_goal_path(@goal), class: "btn btn-ghost" %>
+  <%= button_to "Delete", @goal, method: :delete, class: "btn btn-danger" %>
+  <%= link_to "Back to goals", goals_path, class: "back-link" %>
+</p>

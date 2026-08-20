@@ -1,0 +1,32 @@
+<%= form_with(model: goal, class: "panel") do |form| %>
+  <% if goal.errors.any? %>
+    <div class="errors">
+      <strong><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</strong>
+      <ul>
+        <% goal.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, placeholder: "e.g. Run a 5k" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motivation, "Why it matters" %>
+    <%= form.textarea :motivation, placeholder: "A short reminder of your why..." %>
+  </div>
+
+  <div class="field field-inline">
+    <%= form.checkbox :completed %>
+    <%= form.label :completed, "Already completed" %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", goals_path, class: "back-link" %>
+  </div>
+<% end %>

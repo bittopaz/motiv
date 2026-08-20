@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Run a 5k
+  motivation: A journey of a thousand miles begins with a single step.
+  completed: false
+
+two:
+  title: Read 12 books this year
+  motivation: Readers are leaders.
+  completed: true
