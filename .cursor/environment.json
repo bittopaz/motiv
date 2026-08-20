@@ -1,0 +1,12 @@
+{
+  "name": "Motiv (Rails 8)",
+  "user": "ubuntu",
+  "install": "bundle install && bin/rails db:prepare",
+  "terminals": [
+    {
+      "name": "rails-server",
+      "command": "bin/rails server -b 0.0.0.0 -p 3000"
+    }
+  ],
+  "ports": [3000]
+}
