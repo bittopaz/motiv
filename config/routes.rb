@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :resblocks, only: [ :index, :show ]
   resources :goals do
     member do
       patch :toggle
@@ -15,5 +16,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "goals#index"
+  root "resblocks#index"
 end

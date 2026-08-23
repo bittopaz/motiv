@@ -1,0 +1,23 @@
+# 默认筛选条件示例（约 10 年房龄）
+#
+# 复制为 filters.local.yml 后修改，应用重启后生效：
+#   cp housing/config/filters.yml.example housing/config/filters.local.yml
+
+districts: []
+bizcircles: []
+
+# 建成年份区间（2014–2018 ≈ 8–12 年房龄）
+built_year_min: 2014
+built_year_max: 2018
+
+# 参考均价区间（元/㎡），留空表示不限制
+reference_unit_price_min:
+reference_unit_price_max:
+
+# 小区品质
+plot_ratio_max:
+green_coverage_pct_min:
+management_fee_cny_max:
+
+# 至少要有在售房源，避免「空盘」干扰决策
+min_on_market_units: 1

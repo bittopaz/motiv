@@ -1,0 +1,45 @@
+<% content_for :title, @resblock.name %>
+
+<p class="back-link"><%= link_to "← 返回列表", resblocks_path %></p>
+
+<article class="card detail-card">
+  <div class="card-head">
+    <h1><%= @resblock.name %></h1>
+    <% if @resblock.reference_unit_price.present? %>
+      <span class="pill"><%= number_with_delimiter(@resblock.reference_unit_price) %> 元/㎡</span>
+    <% end %>
+  </div>
+
+  <p class="meta">
+    <%= @resblock.district %>
+    <% if @resblock.bizcircle.present? %> · <%= @resblock.bizcircle %><% end %>
+  </p>
+
+  <% if @resblock.address.present? %>
+    <p class="address"><%= @resblock.address %></p>
+  <% end %>
+
+  <dl class="facts detail-facts">
+    <div><dt>建成年份</dt><dd><%= @resblock.built_year || "—" %></dd></div>
+    <div><dt>房龄</dt><dd><%= @resblock.age_years ? "约 #{@resblock.age_years} 年" : "—" %></dd></div>
+    <div><dt>容积率</dt><dd><%= @resblock.plot_ratio || "—" %></dd></div>
+    <div><dt>绿化率</dt><dd><%= @resblock.green_coverage_pct ? "#{@resblock.green_coverage_pct}%" : "—" %></dd></div>
+    <div><dt>物业费</dt><dd><%= @resblock.management_fee_cny ? "#{@resblock.management_fee_cny} 元/㎡/月" : "—" %></dd></div>
+    <div><dt>建筑类型</dt><dd><%= @resblock.building_type || "—" %></dd></div>
+    <div><dt>总户数</dt><dd><%= @resblock.total_unit_count || "—" %></dd></div>
+    <div><dt>在售套数</dt><dd><%= @resblock.on_market_unit_count || "—" %></dd></div>
+    <div><dt>最近地铁</dt><dd><%= @resblock.metro_commute_label || "—" %></dd></div>
+    <div><dt>数据来源</dt><dd><%= @resblock.source_platform %></dd></div>
+  </dl>
+
+  <% if @resblock.notes.present? %>
+    <section class="notes">
+      <h2>备注</h2>
+      <p><%= simple_format(@resblock.notes) %></p>
+    </section>
+  <% end %>
+
+  <% if @resblock.source_url.present? %>
+    <p><%= link_to "查看原始页面", @resblock.source_url, target: "_blank", rel: "noopener" %></p>
+  <% end %>
+</article>
