@@ -27,10 +27,13 @@
     <header class="site-header">
       <div class="wrap">
         <%= link_to root_path, class: "brand" do %>
-          <span class="logo">&#9889;</span>
-          <span>Motiv<small>stay motivated, one goal at a time</small></span>
+          <span class="logo">&#127968;</span>
+          <span>上海小区筛选<small>先选小区，再看房源</small></span>
         <% end %>
-        <%= link_to "New goal", new_goal_path, class: "btn btn-ghost" %>
+        <nav class="header-nav">
+          <%= link_to "小区", resblocks_path, class: "btn btn-ghost" %>
+          <%= link_to "Goals", goals_path, class: "btn btn-ghost" %>
+        </nav>
       </div>
     </header>
     <main>

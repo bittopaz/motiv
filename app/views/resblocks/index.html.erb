@@ -1,0 +1,89 @@
+<% content_for :title, "小区筛选" %>
+
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<div class="page-intro">
+  <h1>符合条件的小区</h1>
+  <p>以<strong>小区（Resblock）</strong>为粒度筛选，先圈定候选盘，再决定是否深入看具体房源。</p>
+</div>
+
+<%= form_with url: resblocks_path, method: :get, class: "filter-panel" do |form| %>
+  <div class="filter-grid">
+    <div class="field">
+      <%= label_tag "filters[district]", "区（district）" %>
+      <%= select_tag "filters[district]",
+            options_for_select(@district_options, @filters[:districts]&.first),
+            include_blank: "全部",
+            class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[bizcircle]", "板块（bizcircle）" %>
+      <%= select_tag "filters[bizcircle]",
+            options_for_select(@bizcircle_options, @filters[:bizcircles]&.first),
+            include_blank: "全部",
+            class: "input" %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[built_year_min]", "建成年份（起）" %>
+      <%= number_field_tag "filters[built_year_min]", @filters[:built_year_min], class: "input", min: 1990, max: 2030 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[built_year_max]", "建成年份（止）" %>
+      <%= number_field_tag "filters[built_year_max]", @filters[:built_year_max], class: "input", min: 1990, max: 2030 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[reference_unit_price_min]", "参考均价下限（元/㎡）" %>
+      <%= number_field_tag "filters[reference_unit_price_min]", @filters[:reference_unit_price_min], class: "input", step: 1000 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[reference_unit_price_max]", "参考均价上限（元/㎡）" %>
+      <%= number_field_tag "filters[reference_unit_price_max]", @filters[:reference_unit_price_max], class: "input", step: 1000 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[plot_ratio_max]", "容积率上限" %>
+      <%= number_field_tag "filters[plot_ratio_max]", @filters[:plot_ratio_max], class: "input", step: 0.1 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[green_coverage_pct_min]", "绿化率下限（%）" %>
+      <%= number_field_tag "filters[green_coverage_pct_min]", @filters[:green_coverage_pct_min], class: "input", step: 1 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[management_fee_cny_max]", "物业费上限（元/㎡/月）" %>
+      <%= number_field_tag "filters[management_fee_cny_max]", @filters[:management_fee_cny_max], class: "input", step: 0.1 %>
+    </div>
+
+    <div class="field">
+      <%= label_tag "filters[min_on_market_units]", "最少在售套数" %>
+      <%= number_field_tag "filters[min_on_market_units]", @filters[:min_on_market_units], class: "input", min: 0 %>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <span class="pill"><strong><%= @resblocks.size %></strong> 个小区符合条件</span>
+    <%= form.submit "应用筛选", class: "btn btn-primary" %>
+    <%= link_to "恢复默认", resblocks_path, class: "btn btn-ghost" %>
+  </div>
+<% end %>
+
+<% if @resblocks.any? %>
+  <div class="card-list">
+    <% @resblocks.each do |resblock| %>
+      <%= render resblock %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="empty">
+    <h2>暂无匹配小区</h2>
+    <p>调整筛选条件，或导入/采集更多小区数据。</p>
+  </div>
+<% end %>

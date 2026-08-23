@@ -1,0 +1,30 @@
+<article class="card resblock-card">
+  <div class="card-head">
+    <h2><%= link_to resblock.name, resblock_path(resblock) %></h2>
+    <span class="pill"><%= number_with_delimiter(resblock.reference_unit_price) %> 元/㎡</span>
+  </div>
+
+  <p class="meta">
+    <%= resblock.district %>
+    <% if resblock.bizcircle.present? %> · <%= resblock.bizcircle %><% end %>
+    <% if resblock.built_year.present? %> · <%= resblock.built_year %> 年建成（约 <%= resblock.age_years %> 年）<% end %>
+  </p>
+
+  <dl class="facts">
+    <% if resblock.plot_ratio.present? %>
+      <div><dt>容积率</dt><dd><%= resblock.plot_ratio %></dd></div>
+    <% end %>
+    <% if resblock.green_coverage_pct.present? %>
+      <div><dt>绿化率</dt><dd><%= resblock.green_coverage_pct %>%</dd></div>
+    <% end %>
+    <% if resblock.management_fee_cny.present? %>
+      <div><dt>物业费</dt><dd><%= resblock.management_fee_cny %> 元/㎡/月</dd></div>
+    <% end %>
+    <% if resblock.on_market_unit_count.present? %>
+      <div><dt>在售</dt><dd><%= resblock.on_market_unit_count %> 套</dd></div>
+    <% end %>
+    <% if resblock.metro_commute_label.present? %>
+      <div><dt>地铁</dt><dd><%= resblock.metro_commute_label %></dd></div>
+    <% end %>
+  </dl>
+</article>
